@@ -1,0 +1,19 @@
+.top-bar {
+  height: 90px;
+  background-color:rgb(178, 187, 196);
+
+  .ui.grid {
+    margin: 0;
+    padding: 0;
+    .column {
+      padding: 0;
+    }
+  }
+
+  &__left {
+    display: flex !important;
+    align-items: center;
+  }
+}
+
+

@@ -1,0 +1,17 @@
+.basic-layout {
+  background-image: url("https://game-ecommerce.s3.eu-west-3.amazonaws.com/static/bg-web.jpg");
+  background-size: cover;
+  background-position: center;
+
+  .content {
+    background-color:rgba(250, 250, 250, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
