@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id      Int     @default(autoincrement()) @id
+  email   String  @unique
+  nombre  String
+  rol    Rol     @default(USER)
+  libros  UsuariosLibros[]
+}
+
+model Autor {
+  id            Int     @default(autoincrement()) @id
+  nombre        String  @unique
+  nacionalidad  String
+  libros        Libro[]
+}
+
+model Libro {
+  id                  Int     @default(autoincrement()) @id
+  titulo              String
+  isbn                Int  @unique
+  cantidad_total      Int? @default(1)
+  cantidad_prestada   Int? @default(0)
+  disponible          Boolean @default(true)
+  autor               Autor @relation(fields: [autor_id], references: [id])
+  autor_id            Int
+  usuarios            UsuariosLibros[]
+}
+
+model UsuariosLibros{
+  usuario     Usuario @relation(fields: [usuario_id], references: [id])
+  usuario_id   Int
+  libro       Libro @relation(fields: [libro_id], references: [id])
+  libro_id     Int
+
+  @@id([usuario_id, libro_id])
+}
+
+enum Rol {
+  USER
+  ADMIN
+}
